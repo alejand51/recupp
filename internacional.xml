@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translations>
+
+
+<menu>
+    <item id="inicio">
+        <es>Inicio</es>
+        <en>Home</en>
+		<fr>Commencer</fr>
+    </item>
+	<item id="juegos">
+        <es>Juegos</es>
+        <en>Games</en>
+		<fr>Jeux</fr>
+    </item>
+	<item id="registrarse">
+        <es>Registrarse</es>
+        <en>Register</en>
+		<fr>Registre</fr>
+    </item>
+	<item id="iniciar sesion">
+        <es>Iniciar Sesion</es>
+        <en>Login</en>
+		<fr>Connecter</fr>
+    </item>
+	<item id="idioma">
+        <es>Idioma</es>
+        <en>Language</en>
+		<fr>Langue</fr>
+    </item>
+</menu>
+<text id="educontenido">
+	<es>La educación es el proceso de facilitar el refinamiento de habilidades o capacidades propias del individuo, mediante el aprendizaje, la construcción de conocimientos o diversas experiencias</es>
+    <en>Education is the process of facilitating the refinement of the individual's own skills or abilities, through learning, the construction of knowledge or various experiences.</en>
+	<eu>Hezkuntza, norberaren trebetasun edo gaitasunen finketa errazteko prozesua da, ikaskuntzaren, ezagutzaren eraikuntzaren edo hainbat esperientziaren bitartez.</eu>
+</text>
+</translations>

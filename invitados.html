@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido, Invitado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="my-4 text-center">Bienvenido, Invitado</h2>
+        <p>Como invitado, tu acceso es limitado. Puedes explorar pero no modificar datos.</p>
+
+        <div id="invitadoDatos" class="mb-4">
+            <!-- Los datos del invitado se cargarán aquí -->
+        </div>
+
+        <div class="text-center">
+            <a href="index.html" class="btn btn-primary">Cerrar sesión</a>
+        </div>
+    </div>
+
+    <script>
+        let invitado = null;
+
+        // Cargar los datos del invitado desde el archivo JSON
+        function cargaInvitado() {
+            fetch('invitados.json')
+                .then(response => response.json())
+                .then(data => {
+                    const usuario = data.invitados.find(invitado => invitado.username === "invitado1"); // Cambiar según el usuario logueado
+                    if (usuario) {
+                        invitado = usuario;
+                        mostrarDatos();
+                    }
+                })
+                .catch(error => console.error('Error al cargar el archivo JSON:', error));
+        }
+
+        // Mostrar los datos del invitado
+        function mostrarDatos() {
+            const invitadoDatos = document.getElementById('invitadoDatos');
+            invitadoDatos.innerHTML = `
+                <h3>Datos del Invitado</h3>
+                <p><strong>Usuario:</strong> ${invitado.username}</p>
+                <p><strong>Rol:</strong> ${invitado.role}</p>
+                <p><strong>Acceso:</strong> Limitado. No puedes modificar datos.</p>
+            `;
+        }
+
+        // Inicialización
+        cargaInvitado();
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

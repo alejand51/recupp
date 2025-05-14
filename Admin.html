@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="my-4 text-center">Panel de Administrador</h2>
+        <p>Bienvenido, administrador. Aquí puedes ver y gestionar todos los datos del sistema.</p>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="usuariosTable">
+                <!-- Los usuarios se cargarán aquí dinámicamente -->
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            <a href="index.html" class="btn btn-primary">Cerrar sesión</a>
+        </div>
+    </div>
+
+    <script>
+        let usuarios = [];
+
+        // Cargar los datos de los usuarios desde el archivo JSON
+        function cargaUsuarios() {
+            fetch('datos.json')
+                .then(response => response.json())
+                .then(data => {
+                    usuarios = data.usuarios;
+                    mostrarUsuarios();
+                })
+                .catch(error => console.error('Error al cargar el archivo JSON:', error));
+        }
+
+        // Mostrar los usuarios en la tabla
+        function mostrarUsuarios() {
+            const tableBody = document.getElementById('usuariosTable');
+            tableBody.innerHTML = ''; // Limpiar la tabla antes de cargar los datos
+
+            usuarios.forEach(usuario => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${usuario.id}</td>
+                    <td>${usuario.username}</td>
+                    <td>${usuario.email}</td>
+                    <td>${usuario.role}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editarUsuario(${usuario.id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="eliminarUsuario(${usuario.id})">Eliminar</button>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // Editar un usuario
+        function editarUsuario(id) {
+            const usuario = usuarios.find(u => u.id === id);
+            if (usuario) {
+                const newUsername = prompt("Nuevo nombre de usuario:", usuario.username);
+                const newEmail = prompt("Nuevo email:", usuario.email);
+                const newRole = prompt("Nuevo rol:", usuario.role);
+
+                if (newUsername && newEmail && newRole) {
+                    usuario.username = newUsername;
+                    usuario.email = newEmail;
+                    usuario.role = newRole;
+
+                    // Guardar cambios (en un sistema real se enviaría al servidor)
+                    alert("Usuario actualizado correctamente.");
+                    mostrarUsuarios();
+                }
+            }
+        }
+
+        // Eliminar un usuario
+        function eliminarUsuario(id) {
+            const confirmDelete = confirm("¿Estás seguro de que quieres eliminar este usuario?");
+            if (confirmDelete) {
+                usuarios = usuarios.filter(u => u.id !== id);
+                // Guardar cambios (en un sistema real se enviaría al servidor)
+                alert("Usuario eliminado correctamente.");
+                mostrarUsuarios();
+            }
+        }
+
+        // Inicialización
+        cargaUsuarios();
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

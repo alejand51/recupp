@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido, Cliente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="my-4 text-center">Bienvenido, Cliente</h2>
+        <p>Aquí puedes ver tus datos personales y realizar acciones propias de clientes.</p>
+
+        <div id="clienteDatos" class="mb-4">
+            <!-- Los datos del cliente se cargarán aquí -->
+        </div>
+
+        <div class="text-center">
+            <a href="index.html" class="btn btn-primary">Cerrar sesión</a>
+        </div>
+    </div>
+
+    <script>
+        let cliente = null;
+
+        // Cargar los datos del cliente desde el archivo JSON
+        function cargaCliente() {
+            fetch('clientes.json')
+                .then(response => response.json())
+                .then(data => {
+                    const usuario = data.clientes.find(cliente => cliente.username === "cliente1"); // Cambiar según el usuario logueado
+                    if (usuario) {
+                        cliente = usuario;
+                        mostrarDatos();
+                    }
+                })
+                .catch(error => console.error('Error al cargar el archivo JSON:', error));
+        }
+
+        // Mostrar los datos del cliente
+        function mostrarDatos() {
+            const clienteDatos = document.getElementById('clienteDatos');
+            clienteDatos.innerHTML = `
+                <h3>Datos personales</h3>
+                <p><strong>Usuario:</strong> ${cliente.username}</p>
+                <p><strong>Email:</strong> ${cliente.email}</p>
+                <p><strong>Rol:</strong> ${cliente.role}</p>
+                <button class="btn btn-warning" onclick="editarDatos()">Editar</button>
+            `;
+        }
+
+        // Editar los datos del cliente
+        function editarDatos() {
+            const newUsername = prompt("Nuevo nombre de usuario:", cliente.username);
+            const newEmail = prompt("Nuevo email:", cliente.email);
+
+            if (newUsername && newEmail) {
+                cliente.username = newUsername;
+                cliente.email = newEmail;
+
+                // Guardar cambios (en un sistema real se enviaría al servidor)
+                alert("Datos actualizados correctamente.");
+                mostrarDatos();
+            }
+        }
+
+        // Inicialización
+        cargaCliente();
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

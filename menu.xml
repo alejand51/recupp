@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+    <item id="inicio">
+        <es>Inicio</es>
+        <en>Home</en>
+        <fr>Accueil</fr>
+        <link>index.html</link>
+    </item>
+
+    <item id="iniciar_juego">
+        <es>Iniciar Juego</es>
+        <en>Start Game</en>
+        <fr>Démarrer le Jeu</fr>
+        <link>iniciojuego.html</link>
+    </item>
+
+    <item id="resultados">
+        <es>Resultados</es>
+        <en>Results</en>
+        <fr>Résultats</fr>
+        <link>resultados.html</link>
+    </item>
+
+    <item id="estadisticas">
+        <es>Estadísticas del Juego</es>
+        <en>Game Statistics</en>
+        <fr>Statistiques du Jeu</fr>
+        <link>estadisticas.html</link>
+    </item>
+
+    <item id="temas">
+        <es>Temas Disponibles</es>
+        <en>Available Topics</en>
+        <fr>Sujets Disponibles</fr>
+        <link>temas.html</link>
+    </item>
+
+    <item id="tienda">
+        <es>Tienda de Mejoras</es>
+        <en>Shop</en>
+        <fr>Boutique</fr>
+        <link>tienda.html</link>
+    </item>
+
+    <item id="faq">
+        <es>FAQ y Soporte</es>
+        <en>FAQ and Support</en>
+        <fr>FAQ et Support</fr>
+        <link>faq.html</link>
+    </item>
+
+    <item id="contacto">
+        <es>Contacto</es>
+        <en>Contact</en>
+        <fr>Contact</fr>
+        <link>contacto.html</link>
+    </item>
+    <item id="iniciar_sesion">
+        <es>Iniciar Sesión</es>
+        <en>login.html"</en>
+        <link>login.html</link>
+    </item>
+</menu>
